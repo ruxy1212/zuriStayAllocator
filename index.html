@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZuriStay | Home</title>
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+		<div class="topnav" id="topnav">
+		  <a href="#" class="active"><span class="icontainer"><i class="fa fa-fw fa-home"></i></span> Home</a>
+			<a class="floater" href="#allocate"><span class="icontainer"><i class="fa fa-fw fa-info"></i></span> Allocate Rooms</a>
+			<a class="floater" href="allocations.html" target="_blank"><span class="icontainer"><i class="fa fa-fw fa-gears"></i></span> See Allocations</a>
+			<a class="floater" href="javascript:void(0);" onclick="resetAll();"><span class="icontainer"><i class="fa fa-fw fa-calendar-check-o"></i></span> Reset All</a>
+		  <a href="javascript:void(0);" class="icon" onclick="navFunction()">
+		    <i class="fa fa-bars"></i>
+		  </a>
+		</div>
+	</header>
+    <main>
+        <div class="pic-holder">
+            <div class="pic-overlay flex pic-container">
+                Welcome To ZuriStay Allocation System
+            </div> 
+        </div>
+        <div class="allocate-container">
+            <h2>Create Allocation</h2>
+            <div class="rooms flex flex-wrap" id="allocate">
+                <div class="flex-child">
+                    <div class="room card">
+                        <div class="room-head">
+                            <h3>Room 1</h3>
+                            <a href="javascript:void(0);" class="add-btn">Add Roommate</a>
+                        </div>
+                        <div class="accordion">
+                            <button class="accordion-head"><span>1</span> Facilitator; <span>2</span> Developer</button>
+                            <div class="accordion-panel"><div>
+                                <table class="table-header">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Gender</th>
+                                        <th>Skillset</th>
+                                    </tr>
+                                    <!-- <tbody>
+                                        <tr class="table-data">
+                                            <td colspan="4">There are no allocations for this room in case it overflows so i will seee what it will look like</td> 
+                                            <td>Susan Frame</td>
+                                            <td>Facilitator</td>
+                                            <td>Female</td>
+                                            <td>Blockchain development</td> white-space: nowrap;
+                                        </tr>
+                                    </tbody> -->
+                                    <tbody class="table-data">
+                                    </tbody>
+                                </table>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-child">
+                    <div class="room card">
+                        <div class="room-head">
+                            <h3>Room 2</h3>
+                            <a href="javascript:void(0);" class="add-btn">Add Roommate</a>
+                        </div>
+                        <div class="accordion">
+                            <button class="accordion-head"><span>1</span> Facilitator; <span>2</span> Developer</button>
+                            <div class="accordion-panel"><div>
+                                <table class="table-header">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Gender</th>
+                                        <th>Skillset</th>
+                                    </tr>
+                                    <tbody class="table-data">
+                                    </tbody>
+                                </table>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-child">
+                    <div class="room card">
+                        <div class="room-head">
+                            <h3>Room 3</h3>
+                            <a href="javascript:void(0);" class="add-btn">Add Roommate</a>
+                        </div>
+                        <div class="accordion">
+                            <button class="accordion-head"><span>1</span> Facilitator; <span>2</span> Developer</button>
+                            <div class="accordion-panel"><div>
+                                <table class="table-header">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Gender</th>
+                                        <th>Skillset</th>
+                                    </tr>
+                                    <tbody class="table-data">
+                                    </tbody>
+                                </table>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-child">
+                    <div class="room card">
+                        <div class="room-head">
+                            <h3>Room 4</h3>
+                            <a href="javascript:void(0);" class="add-btn">Add Roommate</a>
+                        </div>
+                        <div class="accordion">
+                            <button class="accordion-head"><span>1</span> Facilitator; <span>2</span> Developer</button>
+                            <div class="accordion-panel"><div>
+                                <table class="table-header">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Gender</th>
+                                        <th>Skillset</th>
+                                    </tr>
+                                    <tbody class="table-data">
+                                    </tbody>
+                                </table>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-child">
+                    <div class="room card">
+                        <div class="room-head">
+                            <h3>Room 5</h3>
+                            <a href="javascript:void(0);" class="add-btn">Add Roommate</a>
+                        </div>
+                        <div class="accordion">
+                            <button class="accordion-head"><span>1</span> Facilitator; <span>2</span> Developer</button>
+                            <div class="accordion-panel"><div>
+                                <table class="table-header">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Gender</th>
+                                        <th>Skillset</th>
+                                    </tr>
+                                    <tbody class="table-data">
+                                    </tbody>
+                                </table>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-child">
+                    <div class="room card">
+                        <div class="room-head">
+                            <h3>Room 6</h3>
+                            <a href="javascript:void(0);" class="add-btn">Add Roommate</a>
+                        </div>
+                        <div class="accordion">
+                            <button class="accordion-head"><span>1</span> Facilitator; <span>2</span> Developer</button>
+                            <div class="accordion-panel"><div>
+                                <table class="table-header">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Gender</th>
+                                        <th>Skillset</th>
+                                    </tr>
+                                    <tbody class="table-data">
+                                    </tbody>
+                                </table>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal unsee">
+            <div class="modal-container">
+                <div class="modal-container-head">
+                    <h4>Room <span id="roomNum">1</span> Allocation Form</h4>
+                    <span onclick="closeModal();">&#215;</span>
+                </div>
+                <div class="modal-container-body">
+                    <form method="POST" id="addForm" onsubmit="event.preventDefault(); processForm();">
+                        <div class="form-groupie">
+                            <label class="form-groupie-label">Role:</label>
+                            <div>
+                                <div>
+                                    <input type="radio" name="role" id="Facilitator" value="Facilitator" required="" class="form-control">
+                                    <label for="Facilitator">Facilitator</label> &emsp;
+                                    <input type="radio" name="role" id="Developer" value="Developer" required="" class="form-control">
+                                    <label for="Developer">Developer</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-groupie">
+                            <label>Full Name:</label>
+                            <input type="text" name="name" required="" class="form-control" placeholder="Full Name">
+                        </div>
+                        <div class="form-groupie">
+                            <label>Gender:</label>
+                            <select name="gender" class="form-control" required>
+                                <option value="" disabled selected>Select One</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-groupie unsee">
+                            <label>Skillset:</label>
+                            <select name="skill" class="form-control" required disabled>
+                                <option value="" disabled selected>Select One</option>
+                                <option value="Smart Contract">Smart Contract</option>
+                                <option value="Frontend">Frontend</option>
+                                <option value="Backend">Backend</option>
+                            </select>
+                        </div>          
+                    <button type="submit" name="submit2" class="btn btnSpace">Allocate</button>	   <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        Ruxy (c) <script> var date = new Date(); document.write(date.getFullYear());</script> | All Rights Reserved
+    </footer>
+
+    <script src="./localstorage.js"></script>
+    <script src="./jsonpath.js"></script>
+    <script src="./script.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        tableUpdate();
+    </script>
+    <!-- <script src="./browser_local/index.js" type="module"></script> -->
+</body>
+</html>

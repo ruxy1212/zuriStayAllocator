@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZuriStay | Allocations</title>
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+		<div class="topnav" id="topnav">
+		  <a href="index.html"class="floater" target="_blank"><span class="icontainer"><i class="fa fa-fw fa-home"></i></span> Home</a>
+			<a class="floater" href="index.html#allocate" target="_blank"><span class="icontainer"><i class="fa fa-fw fa-info"></i></span> Allocate Rooms</a>
+			<a class="active" href="#"><span class="icontainer"><i class="fa fa-fw fa-gears"></i></span> See Allocations</a>
+			<a class="floater" href="javascript:void(0);" onclick="resetAll();"><span class="icontainer"><i class="fa fa-fw fa-calendar-check-o"></i></span> Reset All</a>
+		  <a href="javascript:void(0);" class="icon" onclick="navFunction()">
+		    <i class="fa fa-bars"></i>
+		  </a>
+		</div>
+	</header>
+    <main>
+        <div class="pic-holder2">
+            <div class="pic-overlay flex pic-container">
+                Allocation List
+            </div> 
+        </div>
+        <div class="allocate-container">
+            <table class="list-table">
+                <tr>
+                    <th>Room</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Gender</th>
+                    <th>Skillset</th>
+                </tr>
+                <tbody class="table-data"></tbody>
+            </table>
+        </div>
+        <div class="allocate-container">
+            <div class="stat-container flex flex-wrap">
+                <div class="flex-child-3">
+                    <div><i>Total Facilitators:</i> <span>4</span></div>
+                    <div><i>Total Developers:</i> <span>20</span></div>
+                    <div><i>Total Frontend Devs:</i> <span>5</span></div>
+                    <div><i>Total Backend Devs:</i> <span>5</span></div>
+                    <div><i>Total Smart Contract Devs:</i> <span>10</span></div>
+                </div>
+                <div class="flex-child-3">
+                    <div><i>Allocated Facilitators:</i> <span>4</span></div>
+                    <div><i>Allocated Developers:</i> <span>20</span></div>
+                    <div><i>Allocated Frontend Devs:</i> <span>5</span></div>
+                    <div><i>Allocated Backend Devs:</i> <span>5</span></div>
+                    <div><i>Allocated Smart Contract Devs:</i> <span>10</span></div>
+                </div>
+                <div class="flex-child-3">
+                    <div><i>Unallocated Facilitators:</i> <span>4</span></div>
+                    <div><i>Unallocated Developers:</i> <span>20</span></div>
+                    <div><i>Unallocated Frontend Devs:</i> <span>5</span></div>
+                    <div><i>Unallocated Backend Devs:</i> <span>5</span></div>
+                    <div><i>Unallocated Smart Contract Devs:</i> <span>10</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        Ruxy (c) <script> var date = new Date(); document.write(date.getFullYear());</script> | All Rights Reserved
+    </footer>
+
+    <script src="./localstorage.js"></script>
+    <script src="./jsonpath.js"></script>
+    <script src="./script.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        tableUpdateAll();
+        headCount();
+        updateTableCount();
+    </script>
+</body>
+</html>
