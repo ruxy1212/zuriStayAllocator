@@ -1,7 +1,7 @@
 # ZuriStay Allocation System
 
 ## Hosted Link
-[ZuriStay Allocation System](https://blahblahblah.com)
+[ZuriStay Allocation System](https://ruxy1212.github.io/zuriStayAllocator/)
 
 ## Background
 Zuri has recently acquired a highly intensive developer training facility in Lekki. The facility will be used for designing and developing outsourced projects. The facility has the following features:
