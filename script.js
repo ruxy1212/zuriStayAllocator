@@ -26,22 +26,31 @@ function navFunction() {
           navcon.className = "topnav";
       }
   });
-var accordion = document.getElementsByClassName("accordion-head");
 
+var accordion = document.getElementsByClassName("accordion-head");
 for (var i = 0; i < accordion.length; i++) {
   accordion[i].addEventListener("click", function() {
-    // for(var j=0; j<accordion.length; j++){
-    //     accordion[j].classList.remove('active-accordion');
-    //     accordion[j].nextElementSibling.style.maxHeight = null;
-    // }
-
-    this.classList.toggle("active-accordion");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
+    
+    if(this.classList.contains('active-accordion')){
+        for(var j=0; j<accordion.length; j++){
+            accordion[j].classList.remove('active-accordion');
+            accordion[j].nextElementSibling.style.maxHeight = null;
+        }
+    }else{
+        for(var j=0; j<accordion.length; j++){
+            accordion[j].classList.remove('active-accordion');
+            accordion[j].nextElementSibling.style.maxHeight = null;
+        }
+    
+        this.classList.toggle("active-accordion");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        } 
+    }
+    
   });
 }
 
@@ -49,7 +58,6 @@ var roleRads = document.querySelectorAll('input[name="role"]');
 var addBtns = document.querySelectorAll('a[class="add-btn"]');
 for(var roleRad of roleRads){
     roleRad.addEventListener('change', function(e){
-        // console.log(e);
         if(this.checked && this.value == "Developer") {
             document.querySelectorAll('.form-groupie')[3].classList.remove('unsee');
             document.querySelectorAll('.form-groupie')[3].querySelector('select[name="skill"]').disabled = false;
@@ -65,7 +73,6 @@ for(var addBtn of addBtns){
         roomNum = Array.from(addBtns).indexOf(e.target);
         document.getElementById('roomNum').innerHTML = roomNum+1;
         document.querySelector('.modal').classList.remove('unsee');
-       // console.log(addBtn);
     });
 }
 
@@ -76,6 +83,7 @@ function closeModal(){
 }
 
 function processForm(){
+    headCount();
     var roomNumber = document.getElementById('roomNum').innerHTML;
     form = document.getElementById('addForm');
     var fullName = form.elements['name'].value;
@@ -91,6 +99,11 @@ function processForm(){
         "gender": feMale,
         "skill": skillSet
       }];
+
+      LS.setData(alldata);
+      tableUpdate();
+      headCount();
+      alert('Allocation was successful!');
     }else {
 
 //check the following:
@@ -100,72 +113,70 @@ function processForm(){
 // deveRem
 // devRem1
 // devRem2
-// devRem3
-    
+// devRem3    
         var rec = LS.getCodeByName('room', roomNumber);
         var skil=0, devs=0, errors=false;
         if(rec.length>0){
-            rec.forEach((item, i) => {
+            rec.every((item, i) => {
                 if(item['gender'] == "Female" && feMale == "Male"){
                     alert("There is a female here already, find another room please!");
                     errors=true;
-                    return;
+                    return false;
                 }else if(item['gender'] == "Male" && feMale == "Female"){
                     alert("There are males here already, find another room please!");
                     errors=true;
-                    return;
+                    return false;
                 }
                 if(devFaci == "Facilitator"){
-                    if(faciRem < 2 && devFaci == "Facilitator"){
+                    if(faciRem < 1 && devFaci == "Facilitator"){
                         alert("All spaces for facilitators have already been allocated! Thank you.");
                         errors=true;
-                        return;
+                        return false;
                     }
                     if(item['role'] == "Facilitator" && devFaci == "Facilitator"){
                         alert("There is a facilitator here already, find another room please!");
                         errors=true;
-                        return;
+                        return false;
                     }
                 }else if(devFaci == "Developer"){
-                    if(deveRem < 2){
+                    if(deveRem < 1){
                         alert("All spaces for developers have already been allocated! Thank you.");
                         errors=true;
-                        return;
-                    }else{
-                        if(devRem1 < 2 && skillSet == "Frontend"){
-                            alert("All spaces for frontend devs have already been allocated!");
-                            errors=true;
-                            return;
-                        } else if(devRem2 < 2 && skillSet == "Backend"){
-                            alert("All spaces for backend devs have already been allocated!");
-                            errors=true;
-                            return;
-                        } else if(devRem3 < 2 && skillSet == "Smart Contract"){
-                            alert("All spaces for smart contract devs have already been allocated!");
-                            errors=true;
-                            return;
-                        }
+                        return false;
                     }
 
                     if(item['skill'] == skillSet){
                         if(skil>0){
                             alert("There are already 2 Devs with same skillset, find another room please!");
                             errors=true;
-                            return;
+                            return false;
                         }else{
                             skil++;
                         }
                     }
-                    if(devs>2){
+                    if(devs>1){
                         alert("There are already 3 Devs here, find another room please!");
                         errors = true;
-                        return;
+                        return false;
                     }else{
                         devs++;
                     }
                 }
+                return true;
             });
         }
+
+        if(devRem1 < 1 && skillSet == "Frontend"){
+            alert("All spaces for frontend devs have already been allocated!");
+            errors=true;
+        }if(devRem2 < 1 && skillSet == "Backend"){
+            alert("All spaces for backend devs have already been allocated!");
+            errors=true;
+        }if(devRem3 < 1 && skillSet == "Smart Contract"){
+            alert("All spaces for smart contract devs have already been allocated!");
+            errors=true;
+        }
+        
         if(errors == false){
             alldata.push({
                 "room": roomNumber,
@@ -174,54 +185,69 @@ function processForm(){
                 "gender": feMale,
                 "skill": skillSet
               });
+
+            LS.setData(alldata);
+            tableUpdate();
+            alert('Allocation was successful!');
         }else {
             // alert('Uncaught error! Please contact the developer');
             return;
         }
     }
-    LS.setData(alldata);
-    tableUpdate();
-    headCount();
-    alert('Allocation was successful!');
+    
 }
 
 function tableUpdate(){
-    // console.log(document.querySelectorAll('.flex-child')[3].querySelector('.table-data').innerHTML);
-    for(var j=1; j<=6; j++){
-        var parent = document.querySelectorAll('.flex-child'), skill, deveCount=0, faciCount=0;
-        // console.log(j);
-        // console.log(parent[j-1].querySelector('.table-data').innerHTML);
-        var rec = LS.getCodeByName('room', j);
-        // console.log(rec);
-        if(rec.length>0){
-            parent[j-1].querySelector('.table-header').style["white-space"] = "nowrap";
-            rec.forEach((item, i) => {
-                ( item['role'] == "Developer" ) ? skill = item['skill'] : skill = "All";
-                parent[j-1].querySelector('.table-data ').innerHTML += '<tr> <td>'+item['name']+'</td>  <td>'+item['role']+'</td>  <td>'+item['gender']+'</td>  <td>'+skill+'</td> </tr>';
-                // console.log('<tr> <td>'+item['name']+'</td>  <td>'+item['role']+'</td>  <td>'+item['gender']+'</td>  <td>'+skill+'</td> </tr>');
-                // console.log(document.querySelectorAll('.flex-child')[j].querySelector('.table-data'));
-                ( item['role'] == "Developer" ) ? deveCount++ : '';
-                ( item['role'] == "Facilitator" ) ? faciCount++ : '';
-            });
-        }else{
+    if(LS.getAll() != null){
+        for(var j=1; j<=6; j++){
+            var parent = document.querySelectorAll('.flex-child'), skill, deveCount=0, faciCount=0;
+            var rec = LS.getCodeByName('room', j);
+            if(rec.length>0){
+                parent[j-1].querySelector('.table-header').style["white-space"] = "nowrap";
+                parent[j-1].querySelector('.table-data ').innerHTML = "";
+                rec.forEach((item, i) => {
+                    ( item['role'] == "Developer" ) ? skill = item['skill'] : skill = "All";
+                    parent[j-1].querySelector('.table-data ').innerHTML += '<tr> <td>'+item['name']+'</td>  <td>'+item['role']+'</td>  <td>'+item['gender']+'</td>  <td>'+skill+'</td> </tr>';
+                    ( item['role'] == "Developer" ) ? deveCount++ : '';
+                    ( item['role'] == "Facilitator" ) ? faciCount++ : '';
+                });
+            }else{
+                parent[j-1].querySelector('.table-header').style["white-space"] = "normal";
+                parent[j-1].querySelector('.table-data').innerHTML = '<tr><td colspan="4" style="text-align:center;">There are no allocations for this room yet!</td></tr>';
+            }
+            parent[j-1].querySelectorAll('.accordion-head span')[0].innerHTML = faciCount;
+            parent[j-1].querySelectorAll('.accordion-head span')[1].innerHTML = deveCount;
+        }
+    }else{
+        for(var j=1; j<=6; j++){
+            var parent = document.querySelectorAll('.flex-child');          
             parent[j-1].querySelector('.table-header').style["white-space"] = "normal";
             parent[j-1].querySelector('.table-data').innerHTML = '<tr><td colspan="4" style="text-align:center;">There are no allocations for this room yet!</td></tr>';
+            parent[j-1].querySelectorAll('.accordion-head span')[0].innerHTML = 0;
+            parent[j-1].querySelectorAll('.accordion-head span')[1].innerHTML = 0;
         }
-        parent[j-1].querySelectorAll('.accordion-head span')[0].innerHTML = faciCount;
-        parent[j-1].querySelectorAll('.accordion-head span')[1].innerHTML = deveCount;
     }
 }
 
 function tableUpdateAll(){
-    for(var j=1; j<=6; j++){
-        var parent = document.querySelector('.list-table'), skill;
-        var rec = LS.getCodeByName('room', j);
-        if(rec.length>0){
-            rec.forEach((item, i) => {
-                ( item['role'] == "Developer" ) ? skill = item['skill'] : skill = "All";
-                parent.querySelector('.table-data').innerHTML += '<tr> <td>Room '+item['room']+'</td>  <td>'+item['name']+'</td>  <td>'+item['role']+'</td>  <td>'+item['gender']+'</td>  <td>'+skill+'</td> </tr>';
-            });
-        }else{
+    if(LS.getAll() != null){
+        for(var j=1; j<=6; j++){
+            var parent = document.querySelector('.list-table'), skill;
+            var rec = LS.getCodeByName('room', j);
+            if(rec.length>0){
+                rec.forEach((item, i) => {
+                    ( item['role'] == "Developer" ) ? skill = item['skill'] : skill = "All";
+                    parent.querySelector('.table-data').innerHTML += '<tr> <td>Room '+item['room']+'</td>  <td>'+item['name']+'</td>  <td>'+item['role']+'</td>  <td>'+item['gender']+'</td>  <td>'+skill+'</td> </tr>';
+                });
+            }else{
+                if(parent.querySelector('.table-data').innerHTML == ""){
+                    parent.querySelector('.table-data').innerHTML = '<tr> <td colspan="5" style="text-align:center;">There are no allocations yet!</td> </tr>';
+                }
+            }
+        }
+    }else{
+        for(var j=1; j<=6; j++){
+            var parent = document.querySelector('.list-table');
             if(parent.querySelector('.table-data').innerHTML == ""){
                 parent.querySelector('.table-data').innerHTML = '<tr> <td colspan="5" style="text-align:center;">There are no allocations yet!</td> </tr>';
             }
@@ -231,21 +257,30 @@ function tableUpdateAll(){
 
 function headCount(){
     deveCount=0; faciCount=0; devSet1=0; devSet2=0; devSet3=0;
-    var all = LS.getAll();
-    if(all.length>0){
-        all.forEach((item, i) => {
-            ( item['role'] == "Developer" ) ? deveCount++ : '';
-            ( item['role'] == "Facilitator" ) ? faciCount++ : '';
-            ( item['skill'] == "Frontend" ) ? devSet1++ : ''; //front
-            ( item['skill'] == "Backend" ) ? devSet2++ : ''; //back
-            ( item['skill'] == "Smart Contract" ) ? devSet3++ : ''; //blockchain
-        });
+
+    if(LS.getAll() != null){
+        var all = LS.getAll();
+        if(all.length>0){
+            all.forEach((item, i) => {
+                ( item['role'] == "Developer" ) ? deveCount++ : '';
+                ( item['role'] == "Facilitator" ) ? faciCount++ : '';
+                ( item['skill'] == "Frontend" ) ? devSet1++ : ''; //front
+                ( item['skill'] == "Backend" ) ? devSet2++ : ''; //back
+                ( item['skill'] == "Smart Contract" ) ? devSet3++ : ''; //blockchain
+            });
+            faciRem = facilitators - faciCount;
+            deveRem = developers - deveCount;
+            devRem1 = frontends - devSet1;
+            devRem2 = backends - devSet2;
+            devRem3 = smartcon - devSet3;
+        }   
+    }else{
         faciRem = facilitators - faciCount;
         deveRem = developers - deveCount;
         devRem1 = frontends - devSet1;
         devRem2 = backends - devSet2;
         devRem3 = smartcon - devSet3;
-    }   
+    }
 }
 
 function updateTableCount(){

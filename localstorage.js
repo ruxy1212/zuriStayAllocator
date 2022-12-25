@@ -26,14 +26,6 @@ class LocalStorage {
     return tmpdata;
   }
 
-  // test(){
-  //   var tmpOBJ = [{"countries":""}];
-  //   var dat =  this.getAll();
-  //   tmpOBJ[0].countries = dat;
-  //   return jsonPath(tmpOBJ, "$..countries[2]", {resultType:"VALUE"});
-  // }
-
-
   getCodeByName(key,value){
       var tmpOBJ = {};
       var dat =  this.getAll();

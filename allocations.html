@@ -10,8 +10,8 @@
 <body>
     <header>
 		<div class="topnav" id="topnav">
-		  <a href="index.html"class="floater" target="_blank"><span class="icontainer"><i class="fa fa-fw fa-home"></i></span> Home</a>
-			<a class="floater" href="index.html#allocate" target="_blank"><span class="icontainer"><i class="fa fa-fw fa-info"></i></span> Allocate Rooms</a>
+		  <a href="index.html"class="floater"><span class="icontainer"><i class="fa fa-fw fa-home"></i></span> Home</a>
+			<a class="floater" href="index.html#allocate"><span class="icontainer"><i class="fa fa-fw fa-info"></i></span> Allocate Rooms</a>
 			<a class="active" href="#"><span class="icontainer"><i class="fa fa-fw fa-gears"></i></span> See Allocations</a>
 			<a class="floater" href="javascript:void(0);" onclick="resetAll();"><span class="icontainer"><i class="fa fa-fw fa-calendar-check-o"></i></span> Reset All</a>
 		  <a href="javascript:void(0);" class="icon" onclick="navFunction()">
@@ -27,13 +27,15 @@
         </div>
         <div class="allocate-container">
             <table class="list-table">
-                <tr>
-                    <th>Room</th>
-                    <th>Name</th>
-                    <th>Role</th>
-                    <th>Gender</th>
-                    <th>Proficiency</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Room</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Gender</th>
+                        <th>Proficiency</th>
+                    </tr>
+                </thead>
                 <tbody class="table-data"></tbody>
             </table>
         </div>

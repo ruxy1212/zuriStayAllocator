@@ -121,7 +121,13 @@ header {
 }
 
 .allocate-container {
-    margin: 30px 6%;
+    margin: 30px 6% 50px;
+    overflow-x: auto;
+    display: block;
+}
+
+thead{
+    background-color: lightblue;
 }
 
 .allocate-container h2 {
